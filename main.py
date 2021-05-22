@@ -26,7 +26,7 @@ def login():
     password = request.form['password']
     username = request.form['username']
     cur = mydb.cursor()
-    cur.execute('SELECT * FROM userTable WHERE username = %s AND pass = %s', (username, password))
+    cur.execute('SELECT * FROM userTable WHERE username = ? AND pass = ?', (username, password))
     results = cur.fetchone()
     if results is None:
       return 'Username/Password Incorrect'
@@ -34,7 +34,7 @@ def login():
     session['roleNum'] = results[6]
     session['userID'] = results[0]
 
-    #cur.execute('SELECT userID FROM userTable WHERE username = %s AND pass = %s', (username, password))
+    #cur.execute('SELECT userID FROM userTable WHERE username = ? AND pass = ?', (username, password))
     result = cur.fetchone()    
     cur.close()
   return render_template ('home.html', user = results[1])
@@ -47,7 +47,7 @@ def accountCreation():
     username = request.form['username']
     #Checks if userID, username or email have already been used
     cur = mydb.cursor()
-    cur.execute('SELECT * FROM userTable WHERE username = %s OR email = %s', (username, email))
+    cur.execute('SELECT * FROM userTable WHERE username = ? OR email = ?', (username, email))
     results = cur.fetchone()
     if results is not None:
         return "Input a different University ID or username or email, this one already exists"
@@ -60,13 +60,13 @@ def accountCreation():
     findID = False
     while findID == False:
       userID = random.randint(11111111,99999999)
-      cur.execute('SELECT * FROM userTable WHERE userID = %s', (userID,))
+      cur.execute('SELECT * FROM userTable WHERE userID = ?', (userID,))
       session['userID'] = userID
       user = cur.fetchone()
       if not user:
         findID = True
 
-    cur.execute('INSERT INTO userTable (fname, lname, email, username, roleNum, pass, userID) VALUES (%s, %s, %s, %s, %s, %s, %s)', (fname, lname, email, username, roleNum, password, userID,))
+    cur.execute('INSERT INTO userTable (fname, lname, email, username, roleNum, pass, userID) VALUES (?, ?, ?, ?, ?, ?, ?)', (fname, lname, email, username, roleNum, password, userID,))
     cur = mydb.commit()
   return render_template('registered.html', error="error")  
 
@@ -113,11 +113,11 @@ def uploadTranscript():
     affiliationOfRecommender = request.form['affiliationOfRecommender']
     confirmApp = request.form['confirmApp']
     cur = mydb.cursor()
-    cur.execute('INSERT INTO addmissionForm (userID, fname, lname, department, semester, semester_year, prior_degrees, SocialSecurity, address_id, cityAndState, country, zipcode, program, GPA, degree_year, institutionName, prior_experiance, nameOfRecommender, emailOfRecommender, titleOfRecommender, affiliationOfRecommender) VALUES (%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s, %s)',(userID, fname, lname, department, semester, semester_year, prior_degree, SocialSecurity, address_id, cityAndState, country, zipcode, program, GPA, degree_year, institutionName, prior_experiance, nameOfRecommender, emailOfRecommender, titleOfRecommender, affiliationOfRecommender))
+    cur.execute('INSERT INTO addmissionForm (userID, fname, lname, department, semester, semester_year, prior_degrees, SocialSecurity, address_id, cityAndState, country, zipcode, program, GPA, degree_year, institutionName, prior_experiance, nameOfRecommender, emailOfRecommender, titleOfRecommender, affiliationOfRecommender) VALUES (?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?)',(userID, fname, lname, department, semester, semester_year, prior_degree, SocialSecurity, address_id, cityAndState, country, zipcode, program, GPA, degree_year, institutionName, prior_experiance, nameOfRecommender, emailOfRecommender, titleOfRecommender, affiliationOfRecommender))
     cur = mydb.commit()
 
     cur = mydb.cursor()
-    cur.execute('INSERT INTO confirmMsApplication(userID, confirmApp) VALUES(%s, %s)', (userID, confirmApp))
+    cur.execute('INSERT INTO confirmMsApplication(userID, confirmApp) VALUES(?, ?)', (userID, confirmApp))
     cur = mydb.commit()
 
     return render_template("sentApplicationPage.html")
@@ -127,14 +127,14 @@ def uploadTranscript():
   userID = session['userID']
   #before applicant received thier status
   cur = mydb.cursor()
-  cur.execute('SELECT userID FROM addmissionForm WHERE userID = %s', (userID,))
+  cur.execute('SELECT userID FROM addmissionForm WHERE userID = ?', (userID,))
   application = cur.fetchone() #--> null after updating addmissionForm table
 
   if application is not None:
     return render_template("applied.html")
 
   cur = mydb.cursor()
-  cur.execute("SELECT * FROM finalDecision WHERE userID = %s", (userID,))
+  cur.execute("SELECT * FROM finalDecision WHERE userID = ?", (userID,))
   applicationAfter = cur.fetchone()
 
   if applicationAfter is not None:
@@ -152,30 +152,30 @@ def checkStatus():
 
   #for approval
   cur = mydb.cursor()
-  cur.execute("SELECT approved FROM userTable WHERE userID = %s", (userID,))  
+  cur.execute("SELECT approved FROM userTable WHERE userID = ?", (userID,))  
   approved = cur.fetchall()
   approved = [i[0] for i in approved]
   #for denial
   cur = mydb.cursor()
-  cur.execute("SELECT rejected FROM userTable WHERE userID = %s", (userID,))  
+  cur.execute("SELECT rejected FROM userTable WHERE userID = ?", (userID,))  
   rejected = cur.fetchall()
   rejected =[i[0] for i in rejected]
   #for aid 
   cur = mydb.cursor()
-  cur.execute("SELECT aidsOffered FROM userTable WHERE userID = %s", (userID,))  
+  cur.execute("SELECT aidsOffered FROM userTable WHERE userID = ?", (userID,))  
   aidsOffered = cur.fetchall()
   aidsOffered =[i[0] for i in aidsOffered]
   cur.close()  
 
   #Checking if addmission form was filled out yet
   cur = mydb.cursor()
-  cur.execute('SELECT userID FROM confirmMsApplication WHERE userID = %s', (userID,))
+  cur.execute('SELECT userID FROM confirmMsApplication WHERE userID = ?', (userID,))
   results = cur.fetchone()  
   if results is None:
     return render_template("incompleteApplication.html")  
   #------------------------------------------------- 
   cur = mydb.cursor()
-  cur.execute('SELECT userID FROM addmissionForm WHERE userID = %s', (userID,))
+  cur.execute('SELECT userID FROM addmissionForm WHERE userID = ?', (userID,))
   results = cur.fetchone()
   if results is not None:
     return render_template("applicationProcessing.html")
@@ -269,7 +269,7 @@ def facultyReview():
     rec1Institution = request.form['rec1Institution']
     recommendedAdvisor = request.form['recommendedAdvisor']
     cur = mydb.cursor()
-    cur.execute('INSERT INTO reviewForm(fname, lname, semesterAndYear, applyingForDegree, GreVerbalScore, greQuantitative, yearOfExam, BSorBA, BSorBA_GPA, major, graduationYear, university, areaOfInterest, experiance, rec1Rating, rec1Quality, rec1Institution, recommendedAdvisor) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (fname, lname, semester, program, GreVerbalScore, greQuantitative, yearOfExam, priorDegreeStatus, BSorBA_GPA, major, graduationYear, university, areaOfInterest, experiance, rec1Rating, rec1Quality, rec1Institution, recommendedAdvisor))
+    cur.execute('INSERT INTO reviewForm(fname, lname, semesterAndYear, applyingForDegree, GreVerbalScore, greQuantitative, yearOfExam, BSorBA, BSorBA_GPA, major, graduationYear, university, areaOfInterest, experiance, rec1Rating, rec1Quality, rec1Institution, recommendedAdvisor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (fname, lname, semester, program, GreVerbalScore, greQuantitative, yearOfExam, priorDegreeStatus, BSorBA_GPA, major, graduationYear, university, areaOfInterest, experiance, rec1Rating, rec1Quality, rec1Institution, recommendedAdvisor))
     cur = mydb.commit()
     return render_template("pageAfterSentReview.html")
     cur.close()
@@ -300,8 +300,8 @@ def CACandChair():
     GASreviewerComments = request.form["GASreviewerComments"]
     recommendedAdvisor = request.form["recommendedAdvisor"]
     cur = mydb.cursor()
-    cur.execute('INSERT INTO finalDecision(userID, CACandChairDecision, GASreviewerComments, recommendedAdvisor, aidsOffered) VALUES(%s, %s, %s, %s, %s)', (userID, CACandChairDecision, GASreviewerComments, recommendedAdvisor, yesNoOption))
-    cur.execute("DELETE FROM addmissionForm WHERE userID = %s", (userID,))
+    cur.execute('INSERT INTO finalDecision(userID, CACandChairDecision, GASreviewerComments, recommendedAdvisor, aidsOffered) VALUES(?, ?, ?, ?, ?)', (userID, CACandChairDecision, GASreviewerComments, recommendedAdvisor, yesNoOption))
+    cur.execute("DELETE FROM addmissionForm WHERE userID = ?", (userID,))
     cur = mydb.commit()
 
     #approved message
@@ -314,19 +314,19 @@ def CACandChair():
     #if the applicant is approved update the userTable
     if request.form["CACandChairDecision"] == "Admit Applicant":
       cur = mydb.cursor()
-      cur.execute("UPDATE userTable SET approved = %s, roleNum = %s WHERE userID = %s", (approvedMsg, 1, userID))
+      cur.execute("UPDATE userTable SET approved = ?, roleNum = ? WHERE userID = ?", (approvedMsg, 1, userID))
       cur = mydb.commit()
 
     #if the applicant is rejected update the userTable
     if request.form["CACandChairDecision"] == "Reject Applicant":
       cur = mydb.cursor()
-      cur.execute("UPDATE userTable SET approved = %s, roleNum = %s WHERE userID = %s", (rejectedMsg, 1, userID))
+      cur.execute("UPDATE userTable SET approved = ?, roleNum = ? WHERE userID = ?", (rejectedMsg, 1, userID))
       cur = mydb.commit()
 
     #if aid is offered update the userTable
     if request.form["yesNoOption"] == "Yes":
       cur = mydb.cursor()
-      cur.execute("UPDATE userTable SET aidsOffered = %s, roleNum = %s WHERE userID = %s", (aidOffered, 1, userID))
+      cur.execute("UPDATE userTable SET aidsOffered = ?, roleNum = ? WHERE userID = ?", (aidOffered, 1, userID))
       cur = mydb.commit()
 
     return render_template("applicationTracker.html")
@@ -368,7 +368,7 @@ def uploadRecommendation():
 def studentPersonalInfo():
   userID = session['userID']
   cur = mydb.cursor()
-  cur.execute('SELECT * FROM userTable WHERE userID = %s', (userID,))
+  cur.execute('SELECT * FROM userTable WHERE userID = ?', (userID,))
   studentData = cur.fetchall()
   return render_template("studentViewPersonalInfo.html", studentData=studentData)
 @app.route("/updateUserProfile", methods=['GET', 'POST'])
@@ -381,7 +381,7 @@ def updateUserProfile():
     userName = request.form["username"]
     
     cur = mydb.cursor()
-    cur.execute("UPDATE userTable SET fname = %s, lname = %s, email = %s, username = %s WHERE userID = %s", (firstName, lastName, email, userName, userID))
+    cur.execute("UPDATE userTable SET fname = ?, lname = ?, email = ?, username = ? WHERE userID = ?", (firstName, lastName, email, userName, userID))
     cur = mydb.commit()
     return redirect(url_for('studentPersonalInfo'))
   return render_template("updateUserProfile.html", error="error")      
@@ -402,7 +402,7 @@ def forgetPassord():
     newPassword = request.form['password']
 
     cur = mydb.cursor()
-    cur.execute('UPDATE userTable SET pass = %s WHERE userID = %s', (newPassword, userID))
+    cur.execute('UPDATE userTable SET pass = ? WHERE userID = ?', (newPassword, userID))
     cur = mydb.commit()
     return redirect(url_for('home'))
   return render_template('forgetPassword.html')
