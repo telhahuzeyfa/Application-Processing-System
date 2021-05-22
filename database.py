@@ -77,27 +77,27 @@ conn.execute('''CREATE TABLE IF NOT EXISTS confirmMsApplication(
     PRIMARY KEY (userID))''')    
 
 # #testing for applicant
-conn.execute("INSERT INTO userTable VALUES(88888888, 'testUser', 'testUser', 'test@gmail.com', 'user', 'pass', 1, null, null, null)");            
+conn.execute("INSERT OR IGNORE INTO userTable VALUES(88888888, 'testUser', 'testUser', 'test@gmail.com', 'user', 'pass', 1, null, null, null)");            
 
 # application complete but no reviews testing user
-conn.execute("INSERT INTO userTable VALUES(55555555, 'John', 'Lennon', 'JohnLennon@gmail.com', 'JohnLennon', 'pass', 1, null,null,null)")
+conn.execute("INSERT OR IGNORE INTO userTable VALUES(55555555, 'John', 'Lennon', 'JohnLennon@gmail.com', 'JohnLennon', 'pass', 1, null,null,null)")
 
 # incomplete application
-conn.execute("INSERT INTO userTable VALUES(66666666, 'Ringo', 'Starr', 'RingoStarr@gmail.com', 'RingoStarr', 'pass', 1, null,null,null)")
+conn.execute("INSERT OR IGNORE INTO userTable VALUES(66666666, 'Ringo', 'Starr', 'RingoStarr@gmail.com', 'RingoStarr', 'pass', 1, null,null,null)")
 
 # for graduate Secretary
-conn.execute("INSERT INTO userTable VALUES(10101010, 'Graduate Secretary', 'Graduate Secretary', 'graduateSecretarty@gmail.com', 'gs', 'pass', 2, null,null,null)")
+conn.execute("INSERT OR IGNORE INTO userTable VALUES(10101010, 'Graduate Secretary', 'Graduate Secretary', 'graduateSecretarty@gmail.com', 'gs', 'pass', 2, null,null,null)")
 
 # for faculty reviewer 
-conn.execute("INSERT INTO userTable VALUES(20202020, 'Narahari', 'Narahari', 'Narahari@gmail.com', 'Narahari', 'pass', 3, null,null,null)")
+conn.execute("INSERT OR IGNORE INTO userTable VALUES(20202020, 'Narahari', 'Narahari', 'Narahari@gmail.com', 'Narahari', 'pass', 3, null,null,null)")
 
 # another faculty reviewer
-conn.execute("INSERT INTO userTable VALUES(30303030, 'Wood', 'Heller', 'WoodHeller@gmail.com', 'WoodHeller', 'pass', 3, null,null,null)")  
+conn.execute("INSERT OR IGNORE INTO userTable VALUES(30303030, 'Wood', 'Heller', 'WoodHeller@gmail.com', 'WoodHeller', 'pass', 3, null,null,null)")  
 
 # for CAC/Chair
-conn.execute("INSERT INTO userTable VALUES(40404040, 'CAC/Chair', 'CAC/Chair', 'CAC/Chair@gmail.com', 'CAC/Chair', 'pass', 4, null,null,null)")
+conn.execute("INSERT OR IGNORE INTO userTable VALUES(40404040, 'CAC/Chair', 'CAC/Chair', 'CAC/Chair@gmail.com', 'CAC/Chair', 'pass', 4, null,null,null)")
 
-conn.execute("INSERT INTO userTable VALUES(50505050, 'Recommenders', 'Recommenders', 'Recommenders@gmail.com', 'rec', 'pass', 5, null,null,null)")
+conn.execute("INSERT OR IGNORE INTO userTable VALUES(50505050, 'Recommenders', 'Recommenders', 'Recommenders@gmail.com', 'rec', 'pass', 5, null,null,null)")
 
 
 conn.execute("INSERT OR IGNORE INTO roleTable VALUES(1, 'Applicants')")
