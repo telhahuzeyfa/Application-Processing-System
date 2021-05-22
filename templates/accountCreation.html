@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Create your account here!</title>
+        <link rel="stylesheet" href='static/css/index.css?v=1.1.1'>
+        <link rel="stylesheet" href='static/css/dropDown.css?v=1.11'>
+        <link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+    </head>
+    <body id="backgroundImageIdx">
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/validateForm.js') }}"></script>
+    <link rel="stylesheet" href='static/css/index.css'>
+    <div class="formcontainer">
+        <div class="container">
+            <div>
+                <div id="MyLogo" style="position:absolute; top:0; left:0;">
+                    <a href="/">
+                        <img src='static/Images/mylogo.jpg' height="70" width="70"/>
+                    </a>
+                </div>      
+            </div>  
+            <div id="wrapper">
+            <h4 style="color:slategrey"><u><h1>Create your account here!</h1></u></h4><hr>
+            <form action="/accountCreation" method="POST" onsubmit="return validate()">
+                <p>First Name: <input type="text" placeholder="First Name" name="firstName" required></p>
+                <p>Last Name: <input type="text" name="lastName" placeholder="Last Name" required></p>
+                <p>Email: <input type="email" name="email" placeholder="Email" required></p>
+                <P>Password: <input type="password" name="password" id="password" placeholder="Password" required></p>
+                <p>Confirm Password: <input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password" required></p> 
+                <p>username: <input type="username" name="username" placeholder="username"></p>   
+               
+                <label for="program" style="display: none;"> Choose your status: </label>
+                <select name="program" id="program" style="display: none;" required>
+                <option value="MS">MS</option>
+                </select><br>    
+                <label for="Department">Select role:</label>
+                <select name="department" id="department" required>
+                  <option value="1">Applicant</option>
+                  <option value="5">Recommender</option>
+                </select><br>
+            <p><input type="submit" value="Register"></p>
+            </form>    
+            <a href="/">HOME</a>
+        </div>
+        </div>
+    </div>
+    </body>
+</html>

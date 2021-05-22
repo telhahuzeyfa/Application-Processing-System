@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CAC/Chair Decision</title>
+<link rel="stylesheet" href='static/css/index.css?v=1.1.1.1'>
+<link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+<div id="MyLogo" style="position:absolute; top:0; left:0;">
+    <a href="/home">
+        <img src= {{ url_for('static', filename='Images/mylogo.jpg') }} height="70" width="70"/>
+    </a>
+</div>
+</head>
+<body id="backgroundImageIdx" >
+    <div class="formcontainer">
+        <div class="container">
+        <h2 style="color:slategrey"><u><h1>Transcript:</h1></u></h2>
+        <table border="2" cellpadding="6" cellspacing="6">
+            <thead>
+            <tr><strong>
+                <th>University ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Recommendation Letter:</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in applicantInfoForRecommendationLatter %} 
+            {% for recommendationLetter in recommendationLetter %}
+                    <tr>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[2]}}</td>
+                        <td>
+                            <a href="{{ (request.path + '/viewRecommendationLeteter' if request.path != '/viewRecommendationLeteter' else '') + recommendationLetter }}">
+                                {{ (request.path + '/viewRecommendationLeteter' if request.path != '/viewRecommendationLeteter' else '') + recommendationLetter }}
+                              </a>
+                        </td>
+                    </tr>
+            {% endfor %}    
+            {% endfor %}      
+                </tbody>
+        </table><br>        
+        <a href="/home">RETURN HOME</a><br>
+        <a style="color:rgb(61, 116, 141)" href="/recommenderInfo">View Recommender Details here</a><br><hr>
+</body>
+</div>
+</div>
+</html>

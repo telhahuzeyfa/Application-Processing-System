@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Recommender Info</title>
+<link rel="stylesheet" href='static/css/index.css?v=1.1.1.1'>
+<link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+<div id="MyLogo" style="position:absolute; top:0; left:0;">
+    <a href="/home">
+        <img src= {{ url_for('static', filename='Images/mylogo.jpg') }} height="70" width="70"/>
+    </a>
+</div>
+</head>
+<body id="backgroundImageIdx" >
+    <div class="formcontainer">
+        <div class="container">
+        <h4 style="color:slategrey"><u><h1>Recommender Details:</h1></u></h4><hr>
+        <table border="3" cellpadding="3" cellspacing="3">
+            <thead>
+            <tr>
+                <th>Student's First Name</th>
+                <th>Student's Last Name</th>
+                <th>Name of recommender</th>
+                <th>Email of recommender</th>
+                <th>Title of recommender</th>
+                <th>Applicant's affiliation with recommender</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in recommenderData %} 
+                    <tr>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[2]}}</td>
+                        <td>{{row[17]}}</td>
+                        <td>{{row[18]}}</td>
+                        <td>{{row[19]}}</td>
+                        <td>{{row[20]}}</td>
+                    </tr>
+            {% endfor %}        
+            </tbody>
+        </table>
+</body>
+</div>
+</div>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+    <link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+    <link rel="stylesheet" href='static/css/index.css'>
+    <title>Approve Students For Graduation</title>
+            
+    </div>
+    </head>
+    <div id="wrapper">
+    <body id="backgroundImageIdx">
+        <div id="MyLogo" style="position:absolute; top:0; left:0;">
+            <a href="/home">
+                <img src= {{ url_for('static', filename='Images/mylogo.jpg') }} height="70" width="70"/>
+            </a>
+        </div>
+        <h4 style="color:slategrey"><u><h1>Make your decision here!</h1></u></h4><hr>
+        <form action = "/CACandChairDecision" method = "POST">
+        <label for="userDataDisplay">Applicant's University ID: </label>
+        <select name="userDataDisplay" id="userDataDisplay">
+            {% for userID in finalDecision %}
+                <option value={{userID}}>{{userID}}</option>
+            {% endfor %}
+        </select> <br><br>
+
+        <label for="CACandChairDecision">Make your final final decision: </label>
+        <select name="CACandChairDecision" required>
+        <option value="Admit Applicant">Admit Applicant</option>
+        <option value="Reject Applicant">Reject Applicant</option>            
+        </select><br> <br> <br>
+        
+        <label for="yesNoOption">Do you want to offer aid to the applicant?</label>
+        <select name="yesNoOption" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>            
+            </select><br> <br>
+        
+        <p>Comments:<input type="text" name="GASreviewerComments" required></p>
+        <p>Recommended Advisor:<input type="text" name="recommendedAdvisor" required></p>
+        <p><input type="submit" value="Submit"></p><br>
+        </form>
+        <a href="/home">Home</a>
+   </body>
+</html>

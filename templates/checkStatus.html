@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Check Status</title>
+            <link rel="stylesheet" href='static/css/index.css?v=1.1.1'>
+            <link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+    </head>
+    <body id="backgroundImageIdx" id="wrapper">
+        <div class="formcontainer">
+            <div id="MyLogo" style="position:absolute; top:0; left:0;">
+                <a href="/home">
+                    <img src= {{ url_for('static', filename='Images/mylogo.jpg') }} height="70" width="70"/>
+                </a>
+            </div><br>
+            <tbody>
+                {% for row in approved %}    
+                    <ul><strong>
+                        <h2><u><h1>WELCOME:</h1></u></h2>
+                        <li>{{approved}}</li><br><hr>
+                        <td></td>
+                        <td></td>
+                    </ul>
+                {% endfor %}
+            </tbody><br>
+            <tbody>
+                {% for row in aidsOffered %}    
+                    <ul><strong>
+                        <li>{{aidsOffered}}</li><br><hr>
+                        <td></td>
+                        <td></td>
+                    </ul>
+                {% endfor %}
+            </tbody>
+            <tbody>
+                {% for row in rejected %}    
+                    <ul><strong>
+                        <li>{{rejected}}</li><br><hr>
+                        <td></td>
+                        <td></td>
+                    </ul>
+                {% endfor %}
+            </tbody>                        
+        </div>    
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Registred Page</title>
+    <link rel="stylesheet" href='static/css/index.css?v=1.1.1'>
+    <link rel="stylesheet" href='static/css/dropDown.css?v=1.11'>
+    <link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+  </head>
+    <body id="backgroundImageIdx">
+      <div id="wrapper">
+      <div class="formcontainer">
+        <div class="container">
+          <div id="MyLogo" style="position:absolute; top:0; left:0;">
+            <a href="/">
+                <img src= {{ url_for('static', filename='Images/mylogo.jpg') }} height="70" width="70"/>
+            </a>
+        </div>
+        <h4 style="color:slategrey"><u><h3>Welcome. You have successfully created your account.</h3></u></h4><hr>
+        <a href="/SignInForm">Click here to login</a>
+      </div>
+      </div>
+    </body>
+</html>

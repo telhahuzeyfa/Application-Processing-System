@@ -1,0 +1,25 @@
+#MyLogo {
+	height: 20px;
+	width: 50px;
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 20px;
+	float: left;
+}
+#signInButton {
+	color:whitesmoke;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 40px;
+	margin-right: 20px;
+	float: left;
+}
+#registerButton {
+	color:whitesmoke;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 30px;
+	margin-right: 20px;
+	float: right;
+}

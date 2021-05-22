@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Your Personal Information</title>
+        <link rel="stylesheet" href='static/css/index.css?v=1.1.1'>
+        <link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+        <link rel="stylesheet" href='static/css/dropDown.css?v=1.1.1'>
+    </head>    
+<div id="wrapper">    
+<body id="backgroundImageIdx">
+    <div class="formcontainer">
+        <div class="dropdown">
+            <button class="dropbtn">Welcome {{user}}</button>
+            <div class="dropdown-content">
+                <a href="/updateUserProfile">Update Personal Information</a>
+                <a href="/forgetPassword">Change Password</a>
+                <a href="/home">Return Home</a>
+                <hr>
+                <a href="/">Sign Out</a>
+            </div>
+        </div><br><br>
+        <div id="MyLogo" style="position:absolute; top:0; left:0;">
+            <a href="/home">
+                <img src= {{ url_for('static', filename='Images/mylogo.jpg') }} height="70" width="70"/>
+            </a>
+        </div><br>
+        {%for row in studentData%}
+            <h3 style="color:slategrey"><u><h3>Your Personal Information</h3></u></h3><hr>
+            <tbody>
+                <ul>
+                    <li>University ID: {{row[0]}}</li><br><hr>
+                    <li>First Name: {{row[1]}}</li><br><hr>
+                    <li>Last Name: {{row[2]}}</li><br><hr>
+                    <li>Email: {{row[3]}}</li><br><hr>
+                    <li>username: {{row[4]}}</li><br><hr>
+                </ul>
+            </tbody>
+        {% endfor %}
+    <a href="/home">HOME</a>
+    </div>
+</body>
+</div>
+</html>

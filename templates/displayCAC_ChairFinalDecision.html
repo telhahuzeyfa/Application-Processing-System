@@ -1,0 +1,45 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CAC/Chair Decision</title>
+<link rel="stylesheet" href='static/css/index.css?v=1.1.1.1'>
+<link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+<div id="MyLogo" style="position:absolute; top:0; left:0;">
+    <a href="/home">
+        <img src= {{ url_for('static', filename='Images/mylogo.jpg') }} height="70" width="70"/>
+    </a>
+</div>
+</head>
+<body id="backgroundImageIdx" >
+    <div class="formcontainer">
+        <div class="container">
+        <h2 style="color:slategrey"><u><h1>CAC/Chair Decision:</h1></u></h2>
+        <table border="2" cellpadding="6" cellspacing="6">
+            <thead>
+            <tr><strong>
+                <th>University ID</th>
+                <th>CAC/Chair Decision</th>
+                <th>CAC/Chair Comments</th>
+                <th>CAC/Chair Recommended Advisor</th>
+                <th>Offered Aid</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in CACdata %} 
+                    <tr>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[2]}}</td>
+                        <td>{{row[3]}}</td>
+                        <td>{{row[4]}}</td>
+                    </tr>
+            {% endfor %}        
+            </tbody>
+        </table><br>
+        <a href="/home">RETURN HOME</a>
+</body>
+</div>
+</div>
+</html>

@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>Application Form feadback</title>
+        <link rel="stylesheet" href='static/css/index.css?v=1.1.1'>
+        <link rel="stylesheet" href='static/css/dropDown.css?v=1.11'>
+        <link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+    </head>
+    <div class="formcontainer">
+    <body id="backgroundImageIdx">
+    <form action="/facultyReview" method="POST" enctype="multipart/form-data">
+        <div>
+            <div id="MyLogo" style="position:absolute; top:0; left:0;">
+                <a href="/home">
+                    <img src='static/Images/mylogo.jpg' height="70" width="70"/>
+                </a>
+            </div>      
+        </div>   
+        <h4 style="color:slategrey"><u><h1>Give your feadback here:</h1></u></h4><hr>
+        <p>fname (required): <input type="text" name="fname" required></p>
+        <p>lname (required): <input type="text" name="lname" required></p>   
+
+        <label for="semester">Semester and Year of Application: </label>
+        <select name="semester" id="semester" required>
+        <option value="Summer 2021">Summer 2021</option>            
+        <option value="Fall 2021">Fall 2021</option>
+        <option value="Spring 2021">Spring 2022</option>
+        </select><br> 
+
+        <label for="program">What degree is applicant applying for? (required): </label>
+        <select name="program" id="program" required>
+        <option value="MS">MS </option>
+        </select><br>   
+
+        <p>GRE Verbal score: <br><input type="number" name="GreVerbalScore" min="1" max="99999999" step=".01"></p>
+        <p>GRE Quantitative score: <br><input type="number" name="greQuantitative" min="1" max="99999999" step=".01"></p>
+        <p>Year Of Exam (required):<br><input type="number" name="yearOfExam"  min="1" max="99999999" required><br><br>
+
+        <label for="priorDegreeStatus">Applicant's prior degree status (required): </label>
+        <select name="priorDegreeStatus" id="priorDegreeStatus" required>
+        <option value="MS">MS</option>
+        <option value="BS">BS</option>
+        <option value="BA">BA</option>
+        </select><br>  
+
+        <p>Prior Degree GPA: <br><input type="number" name="BSorBA_GPA" step=".01"></p>
+        <p>Applicant's Major (required): <input type="text" name="major" required></p>
+        <p>Year of Graduation: <br><input type="number" name="graduationYear"></p>
+        <p>Name of institution (required): <input type="text" name="university" required></p>    
+        <p>Applicant's area of interest: <input type="text" name="areaOfInterest"></p>
+        <p>Applicant's experiances:<input type="text" name="experiance"></p>
+
+        <label for="rec1Rating">Reccommendation letter 1 rating out of 5: </label>
+        <select name="rec1Rating" id="rec1Rating" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        </select><br>   
+
+        <label for="rec1Quality">Quality of Reccommendation letter 1: </label>
+        <select name="rec1Quality" id="rec1Quality" required>
+        <option value="Generic">Generic</option>
+        <option value="Crediable">Crediable</option>
+        </select><br>   
+
+        <p>Recommender Institution:<input type="text" name="rec1Institution"></p>
+        <p>Recommended Advisor: <input type="text" name="recommendedAdvisor"></p>
+
+        <p><input type="submit" value="Send your review"></p><br><br>
+    </form>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Faculty Reviewer's Feadback</title>
+<link rel="stylesheet" href='static/css/index.css?v=1.1.1.1'>
+<link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+<div id="MyLogo" style="position:absolute; top:0; left:0;">
+    <a href="/home">
+        <img src= {{ url_for('static', filename='Images/mylogo.jpg') }} height="70" width="70"/>
+    </a>
+</div>
+</head>
+<body id="backgroundImageIdx" >
+    <h4 style="color:slategrey"><u><strong>Faculty Reviewer's Feadback</u></h4>
+    <div class="formcontainer">
+        <div class="container">
+        <table border="2" cellpadding="2" cellspacing="2"style="position:absolute; top:40; left:0;" >
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Semester and Year of Application</th>
+                <th>Degree applicant is applying for</th>
+                <th>GRE Verbal Score</th>
+                <th>GRE Quantitative Score</th>
+                <th>Year Of Exam</th>
+                <th>Applicant's Prior Degree Status</th>
+                <th>Prior Degree GPA</th>
+                <th>Applicant's Major</th>
+                <th>Year Of Graduation</th>
+                <th>Name Of Institution</th>
+                <th>Applicant's Area Of Interest</th>
+                <th>Applicant's Experiance</th>
+                <th>Reccommendation letter 1 rating out of 5</th>
+                <th>Quality of Reccommendation letter</th>
+                <th>From (institution for recommender)</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in facultyReviewData %} 
+                    <tr>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[2]}}</td>
+                        <td>{{row[3]}}</td>
+                        <td>{{row[4]}}</td>
+                        <td>{{row[5]}}</td>
+                        <td>{{row[6]}}</td>
+                        <td>{{row[7]}}</td>
+                        <td>{{row[8]}}</td>
+                        <td>{{row[9]}}</td>
+                        <td>{{row[10]}}</td>
+                        <td>{{row[11]}}</td>
+                        <td>{{row[12]}}</td>
+                        <td>{{row[13]}}</td>
+                        <td>{{row[14]}}</td>
+                        <td>{{row[15]}}</td>
+                        <td>{{row[16]}}</td>
+                    </tr>
+            {% endfor %}        
+            </tbody>
+        </table>
+</body>
+</div>
+</div>
+</html>

@@ -1,0 +1,51 @@
+html, body {
+    display: flex;
+    justify-content: center;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 20px;
+    }
+form {  
+     border: 10px solid #f1f1f1;
+    }
+button {
+background-color: #0424a0;
+color: white;
+padding: 14px 0;
+margin: 10px 0;
+border: none;
+cursor: grabbing;
+width: 100%;
+}
+.formcontainer {
+    text-align: left;
+    margin: 40px 40px 40px;
+}
+.container {
+    padding: 40px 0;
+    text-align:left;
+}
+#backgroundImageIdx{
+    background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
+}
+#startAppBtn { 
+    height: 50px; 
+    width: 300px; 
+    position:absolute;
+    } 
+#signInBtn{
+    height: 50px; 
+    width: 300px; 
+}    
+#createAccountBtn{
+    height: 50px; 
+    width: 300px; 
+}
+#text{
+    position:inherit;
+    border:2px solid blue;
+}
+#logout{
+    height: 40px; 
+    width: 400px;
+    align-content: center;
+}

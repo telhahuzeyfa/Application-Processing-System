@@ -1,0 +1,75 @@
+<html>
+    <title>Application Processing System Phase 2</title>
+    <link rel="stylesheet" href='static/css/index.css?v=1.1.1'>
+    <link rel="stylesheet" href='static/css/dropDown.css?v=1.1.1'>
+    <link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+        <div class="container">
+            <head id="backgroundImageIdx">
+            <div class="dropdown" style="position:absolute; top:10;">
+                <button class="dropbtn">Welcome {{user}}</button>
+                <div class="dropdown-content">
+                    <a href="/viewPersonalInfo">Profile</a>
+                    <a href="/updateUserProfile">Update Personal Information</a>
+                    <a href="/forgetPassword">Change password</a>
+                    <hr>
+                    <a href="/">Sign Out</a>
+                </div>
+            </div><br><br>
+            </head>    
+    <div id="wrapper">
+    <body id="backgroundImageIdx">
+        <div class="formcontainer">
+            <div class="container">
+            <div id="MyLogo" style="position:absolute; top:0; left:0;">
+                <a href="/home">
+                    <img src= {{ url_for('static', filename='Images/mylogo.jpg') }} height="70" width="70"/>
+                </a>
+            </div>
+            <!-- applicant's roles  -->
+            {% if session['roleNum'] == 1%}
+            <a style="color:rgb(61, 116, 141)" href="/MsApplication">Apply for MS program</a><br><hr>
+            <!-- get the data from final decitoin table and render it on the checkStatus page -->
+            <a style="color:rgb(61, 116, 141)" href="/checkStatus">Check your status here</a><br><hr>
+            <!-- <a href="/studentPersonalInfo">View your personal info here</a> -->
+            {% endif %}
+
+            <!-- Graduate Secretary roles -->
+            {% if session['roleNum'] == 2%}
+            <a style="color:rgb(61, 116, 141)" href="/viewTranscripts">View/download transcript</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/displayApplicantsData">Review applicant's form</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/recommenderInfo">Recommender Details</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/displayFacultyReviewData">Display Faculty Review Form</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/viewCACandChairDecision">View CAC/Chair decision</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/viewRecommendationLeteter">View Applicants Recommendation Letter</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/CACandChairDecision">Make your final decision</a><hr>
+            {% endif %}
+
+            <!-- Faculty reviwer roles -->
+            {% if session['roleNum'] == 3%}
+            <a style="color:rgb(61, 116, 141)" href="/displayApplicantsData">Review applicant's form</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/recommenderInfo">Recommender Details</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/facultyReview">Give your feadback</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/viewRecommendationLeteter">View Applicants Recommendation Letter</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/viewTranscripts">View/download transcript</a><br><hr>
+            {% endif %}
+
+            <!-- Chair of admissions commitee roles -->
+            {% if session['roleNum'] == 4%}
+            <a style="color:rgb(61, 116, 141)" href="/displayApplicantsData">Review applicant's form</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/recommenderInfo">Recommender Details</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/facultyReview">Give your feadback</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/viewTranscripts">View applicant's transcript</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/CACandChairDecision">Make your final decision</a><br><hr>
+            <a style="color:rgb(61, 116, 141)" href="/viewRecommendationLeteter">View Applicants Recommendation Letter</a><br><hr>
+            {% endif %}
+
+            <!-- Recommender roles -->
+            {%if session['roleNum'] == 5%}
+            <a style="color:rgb(61, 116, 141)" href="/uploadRecommendation">Upload your recommendation</a><hr>
+            {%endif%}
+        </body><br>
+        </div>
+        </div>    
+    </div>
+    </div>
+</html>

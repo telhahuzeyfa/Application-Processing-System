@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link rel="stylesheet" href='static/css/index.css?v=1.1.1'>
+        <link rel="stylesheet" href='static/css/dropDown.css?v=1.1.1'>
+        <link rel="stylesheet" href='static/css/CACandChairStyle.css'>
+        
+        <div class="dropdown" style="position:absolute; top:0; left:433;">
+            <button class="dropbtn">Welcome {{user}}</button>
+            <div class="dropdown-content">
+                <a href="/viewPersonalInfo">Profile</a>
+                <a href="/updateUserProfile">Update Personal Information</a>
+                <hr>
+                <a href="/">Sign Out</a>
+            </div>
+        </div><br><br>
+    </head><br><br>
+        <div id="wrapper">
+            <body id="backgroundImageIdx">
+                <form action="/uploadRecommendation" method="POST" enctype="multipart/form-data">
+
+                    <h3 style="color:slategrey"><u><h3>Upload Recommendation letter here:</h3></u></h3><hr>
+                    <label for="recommendation">Upload Recommendation Letter</label>
+                    <input type="file" name="recommendation" required><br>
+                    <p><input type="submit" value="Submit"></p><br><br>
+                </form>
+            </body>
+        </div>
+</html>

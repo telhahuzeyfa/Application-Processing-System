@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>View CAC/Chair Decision</title>
+        <h4 style="color:slategrey"><u><h1>CAC/Chair's Decision</h1></u></h4><hr>
+    </head>
+    <body>
+        <tbody>
+            {% for row in CACdata%}
+            <ul>
+                <li><strong>universityId: {{row[0]}}</li>
+                <li>CAC/Chair decision: {{row[1]}}</li>
+                <li>CAC/Chair Comment: {{row[2]}}</li>
+                <li>Recommended Advisor: {{row[3]}}</li>
+            </ul>
+            {%endfor%}
+        </tbody>
+    <a href="/home">HOME</a>
+    </body>
+</html>

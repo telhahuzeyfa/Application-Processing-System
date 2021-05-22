@@ -77,7 +77,7 @@ conn.execute('''CREATE TABLE IF NOT EXISTS confirmMsApplication(
     PRIMARY KEY (userID))''')    
 
 # #testing for applicant
-# conn.execute("INSERT INTO userTable VALUES(88888888, 'testUser', 'testUser', 'test@gmail.com', 'user', 'pass', 1, null, null, null)");            
+conn.execute("INSERT INTO userTable VALUES(88888888, 'testUser', 'testUser', 'test@gmail.com', 'user', 'pass', 1, null, null, null)");            
 
 # application complete but no reviews testing user
 conn.execute("INSERT INTO userTable VALUES(55555555, 'John', 'Lennon', 'JohnLennon@gmail.com', 'JohnLennon', 'pass', 1, null,null,null)")
