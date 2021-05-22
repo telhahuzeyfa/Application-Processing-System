@@ -14,7 +14,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 UPLOAD_FOLDER_RECOMMENDER = 'static/RecommendationLetters'
 app.config['UPLOAD_FOLDER_RECOMMENDER'] = UPLOAD_FOLDER_RECOMMENDER
 
-mydb = sqlite3.connect('database.sql')
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -25,6 +24,8 @@ def login():
     # session['user'] = request.form['username']
     password = request.form['password']
     username = request.form['username']
+
+    mydb = sqlite3.connect('database.sql')
     cur = mydb.cursor()
     cur.execute('SELECT * FROM userTable WHERE username = ? AND pass = ?', (username, password))
     results = cur.fetchone()
@@ -46,6 +47,8 @@ def accountCreation():
     email = request.form['email']
     username = request.form['username']
     #Checks if userID, username or email have already been used
+
+    mydb = sqlite3.connect('database.sql')
     cur = mydb.cursor()
     cur.execute('SELECT * FROM userTable WHERE username = ? OR email = ?', (username, email))
     results = cur.fetchone()
@@ -112,6 +115,8 @@ def uploadTranscript():
     titleOfRecommender = request.form['titleOfRecommender']
     affiliationOfRecommender = request.form['affiliationOfRecommender']
     confirmApp = request.form['confirmApp']
+
+    mydb = sqlite3.connect('database.sql')
     cur = mydb.cursor()
     cur.execute('INSERT INTO addmissionForm (userID, fname, lname, department, semester, semester_year, prior_degrees, SocialSecurity, address_id, cityAndState, country, zipcode, program, GPA, degree_year, institutionName, prior_experiance, nameOfRecommender, emailOfRecommender, titleOfRecommender, affiliationOfRecommender) VALUES (?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?)',(userID, fname, lname, department, semester, semester_year, prior_degree, SocialSecurity, address_id, cityAndState, country, zipcode, program, GPA, degree_year, institutionName, prior_experiance, nameOfRecommender, emailOfRecommender, titleOfRecommender, affiliationOfRecommender))
     cur = mydb.commit()
@@ -126,6 +131,8 @@ def uploadTranscript():
   # if the applicatn already has a generated userID it means that they have applied for MS program
   userID = session['userID']
   #before applicant received thier status
+
+  mydb = sqlite3.connect('database.sql')
   cur = mydb.cursor()
   cur.execute('SELECT userID FROM addmissionForm WHERE userID = ?', (userID,))
   application = cur.fetchone() #--> null after updating addmissionForm table
@@ -151,6 +158,7 @@ def checkStatus():
   userID = session['userID']
 
   #for approval
+  mydb = sqlite3.connect('database.sql')
   cur = mydb.cursor()
   cur.execute("SELECT approved FROM userTable WHERE userID = ?", (userID,))  
   approved = cur.fetchall()
@@ -184,6 +192,7 @@ def checkStatus():
 
 @app.route('/displayApplicantsData', methods = ['GET', 'POST'])
 def displayApplicantsData():
+  mydb = sqlite3.connect('database.sql')
   cur = mydb.cursor()
   cur.execute('SELECT * FROM addmissionForm')
   applicantData = cur.fetchall()
@@ -210,6 +219,7 @@ def dir_listing(req_path):
 
     # Show directory contents
     trancript = os.listdir(f)
+    mydb = sqlite3.connect('database.sql')
     cur = mydb.cursor()
     cur.execute('SELECT * FROM addmissionForm')
     transcript = cur.fetchall()
@@ -238,6 +248,7 @@ def rec_dirListing(req_path):
     recommendationLetter = os.listdir(f)
     # if not recommendationLetter:
     #   return render_template("notAvailableMsg.html")
+    mydb = sqlite3.connect('database.sql')
     cur = mydb.cursor()
     cur.execute('SELECT * FROM addmissionForm')
     recLetter = cur.fetchall()
@@ -268,11 +279,13 @@ def facultyReview():
     rec1Quality = request.form['rec1Quality']
     rec1Institution = request.form['rec1Institution']
     recommendedAdvisor = request.form['recommendedAdvisor']
+    mydb = sqlite3.connect('database.sql')
     cur = mydb.cursor()
     cur.execute('INSERT INTO reviewForm(fname, lname, semesterAndYear, applyingForDegree, GreVerbalScore, greQuantitative, yearOfExam, BSorBA, BSorBA_GPA, major, graduationYear, university, areaOfInterest, experiance, rec1Rating, rec1Quality, rec1Institution, recommendedAdvisor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (fname, lname, semester, program, GreVerbalScore, greQuantitative, yearOfExam, priorDegreeStatus, BSorBA_GPA, major, graduationYear, university, areaOfInterest, experiance, rec1Rating, rec1Quality, rec1Institution, recommendedAdvisor))
     cur = mydb.commit()
     return render_template("pageAfterSentReview.html")
     cur.close()
+  mydb = sqlite3.connect('database.sql')
   cur = mydb.cursor()
   cur.execute('SELECT * FROM addmissionForm')
   reviewForm = cur.fetchall()
@@ -283,6 +296,7 @@ def facultyReview():
 
 @app.route('/displayFacultyReviewData', methods=['GET', 'POST'])
 def displayFacultyReviewData():
+  mydb = sqlite3.connect('database.sql')
   cur = mydb.cursor()
   cur.execute('SELECT * FROM reviewForm')
   facultyReviewData = cur.fetchall()
@@ -299,6 +313,7 @@ def CACandChair():
     yesNoOption = request.form["yesNoOption"]
     GASreviewerComments = request.form["GASreviewerComments"]
     recommendedAdvisor = request.form["recommendedAdvisor"]
+    mydb = sqlite3.connect('database.sql')
     cur = mydb.cursor()
     cur.execute('INSERT INTO finalDecision(userID, CACandChairDecision, GASreviewerComments, recommendedAdvisor, aidsOffered) VALUES(?, ?, ?, ?, ?)', (userID, CACandChairDecision, GASreviewerComments, recommendedAdvisor, yesNoOption))
     cur.execute("DELETE FROM addmissionForm WHERE userID = ?", (userID,))
@@ -331,6 +346,7 @@ def CACandChair():
 
     return render_template("applicationTracker.html")
   userID = session['userID']
+  mydb = sqlite3.connect('database.sql')
   cur = mydb.cursor()
   cur.execute('SELECT DISTINCT userID FROM addmissionForm')
   finalDecision = cur.fetchall()
@@ -348,6 +364,7 @@ def CACandChair():
 @app.route("/viewCACandChairDecision", methods=['GET','POST'])
 def viewCACandChairDecision():
   userID = session["userID"]
+  mydb = sqlite3.connect('database.sql')
   cur = mydb.cursor()
   cur.execute("SELECT * FROM finalDecision")
   CACdata = cur.fetchall()
@@ -367,6 +384,7 @@ def uploadRecommendation():
 @app.route('/viewPersonalInfo', methods=['GET', 'POST'])
 def studentPersonalInfo():
   userID = session['userID']
+  mydb = sqlite3.connect('database.sql')
   cur = mydb.cursor()
   cur.execute('SELECT * FROM userTable WHERE userID = ?', (userID,))
   studentData = cur.fetchall()
@@ -380,6 +398,7 @@ def updateUserProfile():
     email = request.form["email"]
     userName = request.form["username"]
     
+    mydb = sqlite3.connect('database.sql')
     cur = mydb.cursor()
     cur.execute("UPDATE userTable SET fname = ?, lname = ?, email = ?, username = ? WHERE userID = ?", (firstName, lastName, email, userName, userID))
     cur = mydb.commit()
@@ -388,6 +407,7 @@ def updateUserProfile():
 
 @app.route("/recommenderInfo", methods=['GET', 'POST'])
 def recommenderInfo():
+  mydb = sqlite3.connect('database.sql')
   cur = mydb.cursor()
   cur.execute('SELECT * FROM addmissionForm')
   recommenderData = cur.fetchall()
@@ -401,6 +421,7 @@ def forgetPassord():
     userID = session['userID']
     newPassword = request.form['password']
 
+    mydb = sqlite3.connect('database.sql')
     cur = mydb.cursor()
     cur.execute('UPDATE userTable SET pass = ? WHERE userID = ?', (newPassword, userID))
     cur = mydb.commit()
