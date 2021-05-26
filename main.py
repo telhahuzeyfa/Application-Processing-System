@@ -427,4 +427,7 @@ def forgetPassord():
     cur = mydb.commit()
     return redirect(url_for('home'))
   return render_template('forgetPassword.html')
-app.run(host='0.0.0.0', port=8080, debug=True)
+# @app.route("/forgetUserPass", methods=['GET', 'PASS'])
+# def forgetUserPass():
+    
+app.run(host='0.0.0.0', port=8081, debug=True)

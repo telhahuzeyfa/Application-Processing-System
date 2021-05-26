@@ -7,13 +7,13 @@ conn.execute('''CREATE TABLE IF NOT EXISTS roleTable (rID    int(1) PRIMARY KEY,
 
 # user table
 conn.execute('''CREATE TABLE IF NOT EXISTS userTable (userID int(8) PRIMARY KEY, 
-            fname varchar(20), 
+            fname varchar(20),
             lname varchar(20), 
             email varchar(40), 
-            username varchar(20), 
-            pass varchar(20), 
-            roleNum int(1), 
-            rejected TEXT, 
+            username varchar(20),
+            pass varchar(20),
+            roleNum int(1),
+            rejected TEXT,
             approved TEXT, 
             aidsOffered TEXT,
             FOREIGN KEY (roleNum) REFERENCES roleTable(rID))''')
@@ -108,4 +108,4 @@ conn.execute("INSERT OR IGNORE INTO roleTable VALUES(5, 'Recommenders')")
 
 conn.commit()
 
-conn.close()  
+conn.close()
