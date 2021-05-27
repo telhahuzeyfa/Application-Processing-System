@@ -1,9 +1,17 @@
-from flask import Flask, render_template, request, session, url_for, redirect, abort, send_file
+from flask import Flask, render_template, request, session, url_for, redirect, abort, send_file 
+from flask_mail import Mail
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 import os
 import sqlite3
 import random
 from werkzeug.utils import secure_filename
 app = Flask('app')
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'huzeyfaprep@gmail.com'
+app.config['MAIL_PASSWORD'] = '1234abdc'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 app.secret_key = 'secretKey'
 buffered = True
 #upload transcript to it's specified folder
@@ -427,7 +435,9 @@ def forgetPassord():
     cur = mydb.commit()
     return redirect(url_for('home'))
   return render_template('forgetPassword.html')
-# @app.route("/forgetUserPass", methods=['GET', 'PASS'])
-# def forgetUserPass():
-    
+  
+@app.route("/forgetUserPass", methods=['GET', 'PASS'])
+def forgetUserPass():
+  if request.method == 'POST':
+    email = request.form['email']
 app.run(host='0.0.0.0', port=8081, debug=True)
