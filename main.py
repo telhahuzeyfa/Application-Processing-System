@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, session, url_for, redirect, abort, send_file 
-from flask_mail import Mail
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 import os
 import sqlite3
