@@ -50,7 +50,7 @@ def login():
 @app.route('/accountCreation', methods = ['GET', 'POST'])
 def accountCreation():
   if request.method == 'POST':
-    # userId = request.form.get('universityId', False)
+    # userId = request.form.get('universityIdF', False)
     email = request.form['email']
     username = request.form['username']
     #Checks if userID, username or email have already been used
@@ -157,8 +157,6 @@ def uploadTranscript():
   
   return render_template("MsProgramApplication.html", error="error")
 
-# @app.route('/checkStatus', methods = ['GET', 'POST'])  
-# this one just returns the check status page
 @app.route('/checkStatus')
 def checkStatus():
   #this function checks if addmission for was filled out yet
@@ -434,9 +432,4 @@ def forgetPassord():
     cur = mydb.commit()
     return redirect(url_for('home'))
   return render_template('forgetPassword.html')
-  
-@app.route("/forgetUserPass", methods=['GET', 'PASS'])
-def forgetUserPass():
-  if request.method == 'POST':
-    email = request.form['email']
-app.run(host='0.0.0.0', port=8081, debug=True)
+app.run(host='0.0.0.0', port=8082, debug=True)

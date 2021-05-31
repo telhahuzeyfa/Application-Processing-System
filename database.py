@@ -75,7 +75,7 @@ conn.execute('''CREATE TABLE IF NOT EXISTS confirmMsApplication(
     userID             int (8),
     confirmApp         varchar(10),
     PRIMARY KEY (userID))''')    
-
+    
 # #testing for applicant
 conn.execute("INSERT OR IGNORE INTO userTable VALUES(88888888, 'testUser', 'testUser', 'test@gmail.com', 'user', 'pass', 1, null, null, null)");            
 
