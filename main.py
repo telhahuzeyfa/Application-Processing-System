@@ -5,12 +5,6 @@ import sqlite3
 import random
 from werkzeug.utils import secure_filename
 app = Flask('app')
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'huzeyfaprep@gmail.com'
-app.config['MAIL_PASSWORD'] = '1234abdc'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
 app.secret_key = 'secretKey'
 buffered = True
 #upload transcript to it's specified folder
