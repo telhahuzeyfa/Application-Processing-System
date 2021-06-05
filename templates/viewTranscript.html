@@ -15,34 +15,47 @@
     <div class="formcontainer">
         <div class="container">
         <h2 style="color:slategrey"><u><h1>Transcript:</h1></u></h2>
-        <table border="2" cellpadding="6" cellspacing="6">
+
+        <div style="float: left;margin-right:10px">
+        <table border="2" cellpadding="1" cellspacing="1">
             <thead>
             <tr><strong>
                 <th>University ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Transcript:</th>
             </tr>
             </thead>
             <tbody>
             {% for row in applicantInfoForTranscript %} 
-            {% for trancript in trancript %}
                     <tr>
                         <td>{{row[0]}}</td>
                         <td>{{row[1]}}</td>
                         <td>{{row[2]}}</td>
-                        <td>
-                            <a href="{{ (request.path + '/viewTranscripts' if request.path != '/viewTranscripts' else '') + trancript }}">
-                              {{ (request.path + '/viewTranscripts' if request.path != '/viewTranscripts' else '') + trancript }}</a>
-                        </td>
                     </tr>
             {% endfor %}    
-            {% endfor %}      
               </tbody>
-        </table><br>
-        
-        <a href="/home">RETURN HOME</a><br>
-</body>
+        </table>
+        </div>      
+
+        <div style="float: left">
+        <table border="2" cellpadding="1" cellspacing="1">
+        <thead>
+            <tr><strong>
+            <th>Transcript:</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trancript in trancript %}
+        <tr>
+        <td>
+            <a href="{{ (request.path + '/viewTranscripts' if request.path != '/viewTranscripts' else '') + trancript }}">
+              {{ (request.path + '/viewTranscripts' if request.path != '/viewTranscripts' else '') + trancript }}</a>
+        </td>
+        </tr>
+        {% endfor %}      
+        </table>
+        </div> 
+</body><br>
 </div>
 </div>
 </html>
