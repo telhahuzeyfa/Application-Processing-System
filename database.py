@@ -99,12 +99,16 @@ conn.execute("INSERT OR IGNORE INTO userTable VALUES(40404040, 'CAC/Chair', 'CAC
 
 conn.execute("INSERT OR IGNORE INTO userTable VALUES(50505050, 'Recommenders', 'Recommenders', 'Recommenders@gmail.com', 'rec', 'pass', 5, null,null,null)")
 
+# for System Administrators
+conn.execute("INSERT OR IGNORE INTO userTable VALUES(60606060, 'System', 'Admin', 'sysAdmin@gmail.com', 'sysAdmin', 'pass', 6, null,null,null)")
+
 
 conn.execute("INSERT OR IGNORE INTO roleTable VALUES(1, 'Applicants')")
 conn.execute("INSERT OR IGNORE INTO roleTable VALUES(2, 'Graduate Secretary')")
 conn.execute("INSERT OR IGNORE INTO roleTable VALUES(3, 'Faculty Reviewers')")
 conn.execute("INSERT OR IGNORE INTO roleTable VALUES(4, 'CAC/Chair')")
 conn.execute("INSERT OR IGNORE INTO roleTable VALUES(5, 'Recommenders')")
+conn.execute("INSERT OR IGNORE INTO roleTable VALUES(6, 'System Administrators')")
 
 conn.commit()
 

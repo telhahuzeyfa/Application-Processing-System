@@ -66,6 +66,13 @@
             <!-- Recommender roles -->
             {%if session['roleNum'] == 5%}
             <a style="color:rgb(61, 116, 141)" href="/uploadRecommendation">Upload your recommendation</a><hr>
+            {% endif %}
+
+            <!-- System Administrators -->
+             <!-- Chair of admissions commitee roles -->
+             {% if session['roleNum'] == 6%}
+             <a style="color:rgb(61, 116, 141)" href="/viewTranscripts">View applicant's transcript</a><br><hr>
+             <a href="/updateUserProfile">Update Student Profile</a>
             {%endif%}
         </body><br>
         </div>
