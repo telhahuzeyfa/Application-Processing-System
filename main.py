@@ -426,4 +426,20 @@ def forgetPassord():
     cur = mydb.commit()
     return redirect(url_for('home'))
   return render_template('forgetPassword.html')
+
+@app.route("/viewUsersInfo", methods=['GET', 'POST'])
+def viewUsersInfo():
+  mydb = sqlite3.connect('database.sql')
+  cur = mydb.cursor()
+  cur.execute('SELECT * FROM userTable')
+  userData = cur.fetchall()
+  if not userData:
+    return render_template("notAvailableMsg.html")
+  return render_template("displayAllUsersData.html", userData=userData)
+# @app.route("/updateUserInfo", methods=['GET', 'POST'])
+# def updateUserInfo():
+#   if request.method == 'POST':
+@app.route("/testTemplate", methods=['GET', 'POST'])
+def testTemplate():
+  return render_template("testDashboard.html")
 app.run(host='0.0.0.0', port=8082, debug=True)
