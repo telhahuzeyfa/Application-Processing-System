@@ -44,17 +44,7 @@
       </div>
       <ul class="app-menu">
         <li><a class="app-menu__item active" href="dashboard.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
-            <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Font Icons</a></li>
-            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>
-            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
-          </ul>
-        </li>
-        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Apply</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <!-- applicant's roles  -->  
           {% if session['roleNum'] == 1%}
           <ul class="treeview-menu">
@@ -62,6 +52,78 @@
             <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i> Custom Components</a></li>
             <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>
             <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
+          </ul>
+          {% endif %}
+          <!-- Graduate Secretary roles -->
+          {% if session['roleNum'] == 2%}
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="/viewTranscript"><i class="icon fa fa-circle-o"></i> View/download transcript</a></li>
+            <li><a class="treeview-item" href="/displayApplicantsData"><i class="icon fa fa-circle-o"></i> Review applicant's form</a></li>
+            <li><a class="treeview-item" href="/recommenderInfo"><i class="icon fa fa-circle-o"></i> Recommender Details</a></li>
+            <li><a class="treeview-item" href="/displayFacultyReviewData"><i class="icon fa fa-circle-o"></i> Display Faculty Review Form</a></li>
+            <li><a class="treeview-item" href="/viewCACandChairDecision"><i class="icon fa fa-circle-o"></i> View CAC/Chair decision</a></li>
+            <li><a class="treeview-item" href="/viewRecommendationLeteter"><i class="icon fa fa-circle-o"></i> View Applicants Recommendation Letter</a></li>
+            <li><a class="treeview-item" href="/CACandChairDecision"><i class="icon fa fa-circle-o"></i> Make your final decision</a></li>
+          </ul>
+          {% endif %}
+
+          <!-- Faculty reviwer roles -->
+          {% if session['roleNum'] == 3%}
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="/displayApplicantsData"><i class="icon fa fa-circle-o"></i> Review applicant's form</a></li>
+            <li><a class="treeview-item" href="/recommenderInfo"><i class="icon fa fa-circle-o"></i> Recommender Details</a></li>
+            <li><a class="treeview-item" href="/facultyReview"><i class="icon fa fa-circle-o"></i> Give your feadback</a></li>
+            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
+            <li><a class="treeview-item" href="/viewRecommendationLeteter"><i class="icon fa fa-circle-o"></i> View Applicants Recommendation Letter</a></li>
+            <li><a class="treeview-item" href="/viewTranscripts"><i class="icon fa fa-circle-o"></i> View/download transcript</a></li>
+          </ul>
+          {% endif %}
+
+          <!-- Chair of admissions commitee roles -->
+          {% if session['roleNum'] == 4%}
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="/displayApplicantsData"><i class="icon fa fa-circle-o"></i> Review applicant's form</a></li>
+            <li><a class="treeview-item" href="/recommenderInfo"><i class="icon fa fa-circle-o"></i> Recommender Details</a></li>
+            <li><a class="treeview-item" href="/facultyReview"><i class="icon fa fa-circle-o"></i> Give your feadback</a></li>
+            <li><a class="treeview-item" href="/viewTranscripts"><i class="icon fa fa-circle-o"></i> View/download transcript</a></li>
+            <li><a class="treeview-item" href="/viewRecommendationLeteter"><i class="icon fa fa-circle-o"></i> View Applicants Recommendation Letter</a></li>
+            <li><a class="treeview-item" href="/CACandChairDecision"><i class="icon fa fa-circle-o"></i> Make your final decision</a></li>
+          </ul>
+          {% endif %}
+
+          <!-- Recommender's Role -->
+          {% if session['roleNum'] == 5%}
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="/uploadRecommendation"><i class="icon fa fa-circle-o"></i> Upload your recommendation</a></li>
+          </ul>
+          {% endif %}
+        <!-- System Admin Role -->
+        {% if session['roleNum'] == 6%}
+        <ul class="treeview-menu">
+                <li><a class="treeview-item" href="/viewUsersInfo"><i class="icon fa fa-circle-o"></i> View User's Informations</a></li>
+                <li><a class="treeview-item" href="/viewTranscripts"><i class="icon fa fa-circle-o"></i> View applicant's transcript</a></li>
+                <li><a class="treeview-item" href="/updateUserInfo"><i class="icon fa fa-circle-o"></i> Update User's Informations</a></li>
+            </ul>
+            {% endif %}
+
+        </li>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
+            <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Font Icons</a></li>
+            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>
+            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
+          </ul>
+        </li>
+        <!-- charts section can be changed to anything  -->
+        <!-- <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li> -->
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        
+          <!-- applicant's roles  -->  
+          {% if session['roleNum'] == 1%}
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="/MsApplication"><i class="icon fa fa-circle-o"></i> Apply for MS program</a></li>
+            <li><a class="app-menu__item" href="/checkStatus"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Check Status</span></a></li>
+      </ul>
           </ul>
           {% endif %}
           <!-- Graduate Secretary roles -->
@@ -138,7 +200,7 @@
         <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>
         
         <!-- Applicant's role for checking their status -->
-        <li><a class="app-menu__item" href="/checkStatus"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Check Status</span></a></li>
+        <li><a class="app-menu__item" href="/checkStatus"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Check your staus</span></a></li>
       </ul>
     </aside>
     <main class="app-content">
