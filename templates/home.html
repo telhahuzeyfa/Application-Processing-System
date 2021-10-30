@@ -128,7 +128,7 @@
           {% if session['roleNum'] == 2%}
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="/viewTranscript"><i class="icon fa fa-circle-o"></i> View/download transcript</a></li>
-            <li><a class="treeview-item" href="/displayApplicantsData"><i class="icon fa fa-circle-o"></i> Review applicant's form</a></li>
+            <li><a class="treeview-item" href="/displayApplicantsData"><i class="icon fa fa-circle-o"></i> Review applicant's forms</a></li>
             <li><a class="treeview-item" href="/recommenderInfo"><i class="icon fa fa-circle-o"></i> Recommender Details</a></li>
             <li><a class="treeview-item" href="/displayFacultyReviewData"><i class="icon fa fa-circle-o"></i> Display Faculty Review Form</a></li>
             <li><a class="treeview-item" href="/viewCACandChairDecision"><i class="icon fa fa-circle-o"></i> View CAC/Chair decision</a></li>
@@ -177,36 +177,13 @@
         {% endif %}
 
         </li>
-        <!-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="/viewUsersInfo"><i class="icon fa fa-circle-o"></i> User Information Table</a></li>
-            <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
-          </ul>
-        </li> -->
-        <!-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a class="treeview-item" href="page-login.html"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
-            <li><a class="treeview-item" href="page-lockscreen.html"><i class="icon fa fa-circle-o"></i> Lockscreen Page</a></li>
-            <li><a class="treeview-item" href="page-user.html"><i class="icon fa fa-circle-o"></i> User Page</a></li>
-            <li><a class="treeview-item" href="page-invoice.html"><i class="icon fa fa-circle-o"></i> Invoice Page</a></li>
-            <li><a class="treeview-item" href="page-calendar.html"><i class="icon fa fa-circle-o"></i> Calendar Page</a></li>
-            <li><a class="treeview-item" href="page-mailbox.html"><i class="icon fa fa-circle-o"></i> Mailbox</a></li>
-            <li><a class="treeview-item" href="page-error.html"><i class="icon fa fa-circle-o"></i> Error Page</a></li>
-          </ul>
-        </li>
-        <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>
-         -->
-        <!-- Applicant's role for checking their status -->
-        <!-- <li><a class="app-menu__item" href="/checkStatus"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Status</span></a></li>
-      </ul> -->
     </aside>
     <main class="app-content">
       <div class="app-title">
         <div>
           <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
           <div>
-            <p class="app-sidebar__user-name">Welcome {{user}}</p>
+            <p class="app-sidebar__user-name">WELCOME {{user}}</p>
           </div>
         </div>
         <ul class="app-breadcrumb breadcrumb">
@@ -215,43 +192,63 @@
         </ul>
       </div>
       
-      {% if session['roleNum'] == 1%}
+      <!-- Graduate Secretary roles -->
+      {% if session['roleNum'] == 2%}
       <div class="row">
-        <!-- for undergraduate students -->
+        <!-- View/download transcript -->
           <div class="col-md-6 col-lg-3">
             <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
               <div class="info">
                 <!-- only for undergrad students  -->
-                <a class="app-menu__item" href="/undergraduateApplication"><strong>Apply for undergraduate program</strong></a>
+                <a class="app-menu__item" href="/viewTranscript"><strong>View/download transcript</strong></a>
               </div>
             </div>
           </div>
-
-        <!-- link to masters application form -->
+        <!-- Review applicant's forms -->
         <div class="col-md-6 col-lg-3">
           <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
             <div class="info">
-              <!-- only for masters students  -->
-              <!-- <li><a class="treeview-item" href="/MsApplication"><i class="icon fa fa-circle-o"></i> Apply for MS program</a></li> -->
-              <a class="app-menu__item" href="/MsApplication"><strong>Apply for MS program</strong></a>
+              <a class="app-menu__item" href="/displayApplicantsData"><strong>Review applicant's forms</strong></a>
             </div>
           </div>
         </div>
-
-        <!-- for PHD students -->
+        <!-- Recommender Details -->
         <div class="col-md-6 col-lg-3">
           <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
             <div class="info">
-              <!-- only for PHD students  -->
-              <a class="app-menu__item" href="/PHDApplication"><strong>Apply for PHD program</a>
+              <a class="app-menu__item" href="/recommenderInfo"><strong>Recommender Details</a>
             </div>
           </div>
         </div>
+        <!-- Display Faculty Review Form -->
         <div class="col-md-6 col-lg-3">
-          <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
             <div class="info">
-              <!-- <h4>Status</h4> -->
-                <a class="app-menu__item" href="/checkStatus">Check Status</a>
+              <a class="app-menu__item" href="/displayFacultyReviewData"><strong>Display Faculty Review Form</a>
+            </div>
+          </div>
+        </div>
+        <!-- View CAC/Chair decision -->
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+            <div class="info">
+              <a class="app-menu__item" href="/viewCACandChairDecision"><strong>View CAC/Chair decision</a>
+            </div>
+          </div>
+        </div>
+        <!-- View Applicants Recommendation Letter -->
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+            <div class="info">
+              <a class="app-menu__item" href="/viewRecommendationLeteter"><strong>View Applicants Recommendation Letter</a>
+            </div>
+          </div>
+        </div>
+        <!-- Make your final decision -->
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+            <div class="info">
+              <a class="app-menu__item" href="/CACandChairDecision"><strong>Make your final decision</a>
             </div>
           </div>
         </div>
@@ -280,30 +277,48 @@
               <p><b>500</b></p>
             </div>
           </div>
-        </div>
-      </div> -->
+        </div> --->
+      <!-- </div>  -->
       <div class="row">
+        {% if session['roleNum'] == 1%}
         <div>
           <div class="tile">
-            <!-- <h3 class="tile-title">HT COLLEGE</h3> -->
-            <!-- <div>
-              <p class="app-sidebar__user-name">Welcome to HT College {{user}}</p>
-            </div> -->
               <div class="image"><img src= {{ url_for('static', filename='Images/campusPicture.jpeg') }} height="600" width="1150" alt="User Image">
+              </div><br>
+          <!-- for undergraduate students -->
+          <div class="col-md-6 col-lg-3">
+            <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+              <div class="info">
+                <!-- only for undergrad students  -->
+                <a class="app-menu__item" href="/undergraduateApplication"><strong>Apply for undergraduate program</strong></a>
               </div>
-            <div class="embed-responsive embed-responsive-16by9">
-              <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+            </div>
+          </div>
+        <!-- link to masters application form -->
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+            <div class="info">
+              <!-- only for masters students  -->
+              <a class="app-menu__item" href="/MsApplication"><strong>Apply for MS program</strong></a>
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <!-- <div class="tile">
-            <h3 class="tile-title">Support Requests</h3>
-            <div class="embed-responsive embed-responsive-16by9">
-              <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
+
+        <!-- for PHD students -->
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+            <div class="info">
+              <!-- only for PHD students  -->
+              <a class="app-menu__item" href="/PHDApplication"><strong>Apply for PHD program</a>
             </div>
-          </div> -->
+          </div>
         </div>
+            <div class="embed-responsive embed-responsive-16by9">
+              <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+            </div>
+          </div>  
+        </div>
+        {% endif %}
       </div>
     </main>
     <!-- Essential javascripts for application to work-->
