@@ -71,7 +71,7 @@ conn.execute('''CREATE TABLE IF NOT EXISTS finalDecision(
     aidsOffered         varchar(5),
     PRIMARY KEY (userID))''')
 
-conn.execute('''CREATE TABLE IF NOT EXISTS confirmMsApplication(
+conn.execute('''CREATE TABLE IF NOT EXISTS confirmApplication(
     userID             int (8),
     confirmApp         varchar(10),
     PRIMARY KEY (userID))''')    

@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>Application Form</title>
+        <link rel="stylesheet" href='static/css/formStyle.css?=1.1.1.1'>
+        <div id="wrapper">
+            
+        </div>
+    </head>
+    <div id="wrapper">
+    <body id="backgroundImageIdx">
+    <link rel="stylesheet" href='static/css/index.css'>
+    <link rel="stylesheet" href='static/css/formStyle.css'>
+    <form action="/MsApplication" method="POST" enctype="multipart/form-data">
+        <div>
+            <div id="MyLogo" style="position:absolute; top:0; left:0;">
+                <a href="/home">
+                    <img src='static/Images/mylogo.jpg' height="70" width="70"/>
+                </a>
+            </div>      
+        </div>   
+        <h4 style="color:slategrey"><u><h1>Undergraduate program application</h1></u></h4><hr>
+        <!-- personal information -->
+        <p>First Name (required): <input type="text" name="firstName" class="required" required></p>
+        <p>Last Name (required): <input type="text" name="lastName" required></p>
+        <p>Email (required): <input type="email" name="email" required></p>   
+        <!-- <p>University Id (required):<input type="number" name="universityId"  min="1" max="99999999" required><br><br> -->
+        <p>Social Security Number (required):<input type="number" name="SocialSecurity"  min="1" max="999999999" required><br><br>            
+        <p>Address in number (required):<br><input type="number" name="address_id"  min="1" max="99999999" required><br><br>
+        <p>City/State (required): <input type="text" name="cityAndState" required></p>    
+        <p>Country (required): <input type="text" name="country" required></p>    
+        <p>Zipcode (required):<input type="number" name="zipcode"  min="1" max="99999999" required><br><br>  
+
+        <!-- academic information
+        <label for="program">Choose your status (required): </label>
+        <select name="program" id="program" required>
+        <option value="MS">MS </option>
+        </select><br> -->
+
+        <label for="semester" >What semester are you applying for: </label>
+        <select name="semester" id="semester" required>
+        <option value="Summer 2021">Summer 2021</option>            
+        <option value="Fall 2021">Fall 2021</option>
+        <option value="Spring 2021">Spring 2022</option>
+        </select><br> 
+        <h2>Upload Transcript (required):</h2>
+        <label for="transcript">Upload Transcript</label>
+        <input type="file" name="transcript" required><br>
+
+        <p>List Prior Degree (if applicable): <br><input type="text" name="priorDegree" required></p>    
+        <p>What Was Your GPA for that Degree? (if applicable): <br><input type="number" name="GPA" step=".01" required></p>    
+        <p>Degree year: <br><input type="number" name="degree_year" required></p>
+        <p>Which institution did you get your degree from?<br><input type="text" name="institutionName" required></p>  
+        <p>Enter any past work experiance:<br><input type="text" name="prior_experiance" required></p>
+        <p>Name of recommender (required):<input type="text" name="nameOfRecommender" required></p>
+        <p>Title of recommender (required):<input type="text" name="titleOfRecommender" required></p>
+        <p>Email of recommender (required):<input type="email" name="emailOfRecommender" required></p>
+        <p>Your affiliation with the recommender (required):<input type="text" name="affiliationOfRecommender" required></p>
+
+        <label for="confirmApp" >Confirm you application: </label>
+        <select name="confirmApp" id="confirmApp" required>
+        <option value="yes">Yes</option>            
+        <option value="no">No</option>
+        </select><br> 
+
+        <p><input type="submit" value="Send Application"></p><br><br>
+    </form>   
+    </body>
+    </div>
+</html>

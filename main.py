@@ -86,9 +86,9 @@ def signinPage():
 def home():
     return render_template('home.html')  
 
-
-@app.route('/MsApplication', methods = ['GET', 'POST'])
-def uploadTranscript():
+#for undergrad applicants
+@app.route('/undergraduateApplication', methods = ['GET', 'POST'])
+def undergraduateApplication():
   if request.method == 'POST':
     f = request.files['transcript']
     # f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
@@ -123,7 +123,70 @@ def uploadTranscript():
     cur = mydb.commit()
 
     cur = mydb.cursor()
-    cur.execute('INSERT INTO confirmMsApplication(userID, confirmApp) VALUES(?, ?)', (userID, confirmApp))
+    cur.execute('INSERT INTO confirmApplication(userID, confirmApp) VALUES(?, ?)', (userID, confirmApp))
+    cur = mydb.commit()
+
+    return render_template("sentApplicationPage.html")
+
+  # check if the applicant has already applied for undergraduate program
+  # if the applicatn already has a generated userID it means that they have applied for undergraduate program
+  userID = session['userID']
+  #before applicant received thier status
+  mydb = sqlite3.connect('database.sql')
+  cur = mydb.cursor()
+  cur.execute('SELECT userID FROM addmissionForm WHERE userID = ?', (userID,))
+  application = cur.fetchone() #--> null after updating addmissionForm table
+  
+  if application is not None:
+    return "You've already submitted your application"
+
+  cur = mydb.cursor()
+  cur.execute("SELECT * FROM finalDecision WHERE userID = ?", (userID,))
+  applicationAfter = cur.fetchone()
+
+  if applicationAfter is not None:
+    return "You've already submitted your application"
+  cur.close()  
+  
+  return render_template("undergraduateApplication.html", error="error")
+
+@app.route('/MsApplication', methods = ['GET', 'POST'])
+def mastersProgramApplication():
+  if request.method == 'POST':
+    f = request.files['transcript']
+    # f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+    
+    session['user'] = request.form['firstName']
+    userID = session['userID']
+    fname = request.form['firstName']
+    lname = request.form['lastName']
+    department = request.form['program']
+    semester = request.form['semester']
+    semester_year = request.form['semester']
+    SocialSecurity = request.form['SocialSecurity']
+    address_id = request.form['address_id']
+    cityAndState = request.form['cityAndState']
+    country = request.form['country']
+    zipcode = request.form['zipcode']
+    program = request.form['program']
+    prior_degree = request.form['priorDegree']
+    degree_year = request.form['degree_year']
+    institutionName = request.form['institutionName']
+    prior_experiance = request.form['prior_experiance']
+    GPA = request.form['GPA']
+    nameOfRecommender = request.form['nameOfRecommender']
+    emailOfRecommender = request.form['emailOfRecommender']
+    titleOfRecommender = request.form['titleOfRecommender']
+    affiliationOfRecommender = request.form['affiliationOfRecommender']
+    confirmApp = request.form['confirmApp']
+
+    mydb = sqlite3.connect('database.sql')
+    cur = mydb.cursor()
+    cur.execute('INSERT INTO addmissionForm (userID, fname, lname, department, semester, semester_year, prior_degrees, SocialSecurity, address_id, cityAndState, country, zipcode, program, GPA, degree_year, institutionName, prior_experiance, nameOfRecommender, emailOfRecommender, titleOfRecommender, affiliationOfRecommender) VALUES (?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?)',(userID, fname, lname, department, semester, semester_year, prior_degree, SocialSecurity, address_id, cityAndState, country, zipcode, program, GPA, degree_year, institutionName, prior_experiance, nameOfRecommender, emailOfRecommender, titleOfRecommender, affiliationOfRecommender))
+    cur = mydb.commit()
+
+    cur = mydb.cursor()
+    cur.execute('INSERT INTO confirmApplication(userID, confirmApp) VALUES(?, ?)', (userID, confirmApp))
     cur = mydb.commit()
 
     return render_template("sentApplicationPage.html")
@@ -139,18 +202,80 @@ def uploadTranscript():
   application = cur.fetchone() #--> null after updating addmissionForm table
 
   if application is not None:
-    return render_template("applied.html")
+    return "You've already submitted your application"
 
   cur = mydb.cursor()
   cur.execute("SELECT * FROM finalDecision WHERE userID = ?", (userID,))
   applicationAfter = cur.fetchone()
 
   if applicationAfter is not None:
-    return render_template("applied.html")
+    return "You've already submitted your application"
   cur.close()  
   
   return render_template("MsProgramApplication.html", error="error")
+@app.route('/PHDApplication', methods = ['GET', 'POST'])
+def PHDApplication():
+  if request.method == 'POST':
+    f = request.files['transcript']
+    # f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+    
+    session['user'] = request.form['firstName']
+    userID = session['userID']
+    fname = request.form['firstName']
+    lname = request.form['lastName']
+    department = request.form['program']
+    semester = request.form['semester']
+    semester_year = request.form['semester']
+    SocialSecurity = request.form['SocialSecurity']
+    address_id = request.form['address_id']
+    cityAndState = request.form['cityAndState']
+    country = request.form['country']
+    zipcode = request.form['zipcode']
+    program = request.form['program']
+    prior_degree = request.form['priorDegree']
+    degree_year = request.form['degree_year']
+    institutionName = request.form['institutionName']
+    prior_experiance = request.form['prior_experiance']
+    GPA = request.form['GPA']
+    nameOfRecommender = request.form['nameOfRecommender']
+    emailOfRecommender = request.form['emailOfRecommender']
+    titleOfRecommender = request.form['titleOfRecommender']
+    affiliationOfRecommender = request.form['affiliationOfRecommender']
+    confirmApp = request.form['confirmApp']
 
+    mydb = sqlite3.connect('database.sql')
+    cur = mydb.cursor()
+    cur.execute('INSERT INTO addmissionForm (userID, fname, lname, department, semester, semester_year, prior_degrees, SocialSecurity, address_id, cityAndState, country, zipcode, program, GPA, degree_year, institutionName, prior_experiance, nameOfRecommender, emailOfRecommender, titleOfRecommender, affiliationOfRecommender) VALUES (?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?)',(userID, fname, lname, department, semester, semester_year, prior_degree, SocialSecurity, address_id, cityAndState, country, zipcode, program, GPA, degree_year, institutionName, prior_experiance, nameOfRecommender, emailOfRecommender, titleOfRecommender, affiliationOfRecommender))
+    cur = mydb.commit()
+
+    cur = mydb.cursor()
+    cur.execute('INSERT INTO confirmApplication(userID, confirmApp) VALUES(?, ?)', (userID, confirmApp))
+    cur = mydb.commit()
+
+    return render_template("sentApplicationPage.html")
+
+  # check if the applicant has already applied for MS program
+  # if the applicatn already has a generated userID it means that they have applied for MS program
+  userID = session['userID']
+  #before applicant received thier status
+
+  mydb = sqlite3.connect('database.sql')
+  cur = mydb.cursor()
+  cur.execute('SELECT userID FROM addmissionForm WHERE userID = ?', (userID,))
+  application = cur.fetchone() #--> null after updating addmissionForm table
+
+  if application is not None:
+    return "You've already submitted your application"
+
+  cur = mydb.cursor()
+  cur.execute("SELECT * FROM finalDecision WHERE userID = ?", (userID,))
+  applicationAfter = cur.fetchone()
+
+  if applicationAfter is not None:
+    return "You've already submitted your application"
+  cur.close()  
+  
+  return render_template("PHDApplication.html", error="error")
 @app.route('/checkStatus')
 def checkStatus():
   #this function checks if addmission for was filled out yet
@@ -176,7 +301,7 @@ def checkStatus():
 
   #Checking if addmission form was filled out yet
   cur = mydb.cursor()
-  cur.execute('SELECT userID FROM confirmMsApplication WHERE userID = ?', (userID,))
+  cur.execute('SELECT userID FROM confirmApplication WHERE userID = ?', (userID,))
   results = cur.fetchone()  
   if results is None:
     return render_template("incompleteApplication.html")  

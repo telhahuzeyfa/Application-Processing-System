@@ -123,7 +123,6 @@
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="/MsApplication"><i class="icon fa fa-circle-o"></i> Apply for MS program</a></li>
             <li><a class="app-menu__item" href="/checkStatus"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Check Status</span></a></li>
-          </ul>
           {% endif %}
           <!-- Graduate Secretary roles -->
           {% if session['roleNum'] == 2%}
@@ -175,7 +174,7 @@
                 <li><a class="treeview-item" href="/viewTranscripts"><i class="icon fa fa-circle-o"></i> View applicant's transcript</a></li>
                 <li><a class="treeview-item" href="/updateUserInfo"><i class="icon fa fa-circle-o"></i> Update User's Informations</a></li>
             </ul>
-            {% endif %}
+        {% endif %}
 
         </li>
         <!-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
@@ -206,7 +205,6 @@
       <div class="app-title">
         <div>
           <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
-          <p>A free and open source Bootstrap 4 admin template</p>
           <div>
             <p class="app-sidebar__user-name">Welcome {{user}}</p>
           </div>
@@ -216,26 +214,49 @@
           <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
         </ul>
       </div>
-
+      
+      {% if session['roleNum'] == 1%}
       <div class="row">
+        <!-- for undergraduate students -->
+          <div class="col-md-6 col-lg-3">
+            <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+              <div class="info">
+                <!-- only for undergrad students  -->
+                <a class="app-menu__item" href="/undergraduateApplication"><strong>Apply for undergraduate program</strong></a>
+              </div>
+            </div>
+          </div>
+
+        <!-- link to masters application form -->
         <div class="col-md-6 col-lg-3">
           <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
             <div class="info">
               <!-- only for masters students  -->
               <!-- <li><a class="treeview-item" href="/MsApplication"><i class="icon fa fa-circle-o"></i> Apply for MS program</a></li> -->
-              <a class="app-menu__item" href="/MsApplication"><strong>Apply for MS program</a>
+              <a class="app-menu__item" href="/MsApplication"><strong>Apply for MS program</strong></a>
             </div>
           </div>
         </div>
 
+        <!-- for PHD students -->
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+            <div class="info">
+              <!-- only for PHD students  -->
+              <a class="app-menu__item" href="/PHDApplication"><strong>Apply for PHD program</a>
+            </div>
+          </div>
+        </div>
         <div class="col-md-6 col-lg-3">
           <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
             <div class="info">
               <!-- <h4>Status</h4> -->
-                <a class="app-menu__item" href="/checkStatus"><strong>Check Status</a>
+                <a class="app-menu__item" href="/checkStatus">Check Status</a>
             </div>
           </div>
         </div>
+        {% endif %}
+        
         <!-- <div class="col-md-6 col-lg-3">
           <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
             <div class="info">
