@@ -15251,7 +15251,7 @@ be a descendant of the grid when it is being dragged.
  background-color 0.3s ease;
   transition: border-left-color 0.3s ease,
  background-color 0.3s ease;
-  color: #fff;
+  color: rgb(0, 0, 0);
 }
 
 .app-menu__item.active, .app-menu__item:hover, .app-menu__item:focus {
@@ -15308,7 +15308,7 @@ be a descendant of the grid when it is being dragged.
           align-items: center;
   padding: 5px 5px 5px 20px;
   font-size: 1em;
-  color: #fff;
+  color: rgb(0, 0, 0);
 }
 
 .treeview-item.active, .treeview-item:hover, .treeview-item:focus {

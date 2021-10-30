@@ -91,7 +91,7 @@ def home():
 def uploadTranscript():
   if request.method == 'POST':
     f = request.files['transcript']
-    f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+    # f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
     
     session['user'] = request.form['firstName']
     userID = session['userID']
@@ -322,8 +322,9 @@ def CACandChair():
     approvedMsg = "Congratulations!, We're delighted to inform you that you have been admitted to HT College!"
     #rejected message
     rejectedMsg = "I regret to inform you that we are unable to offer you a spot at HT College."
+    
     #aid has been offered to applicant
-    aidOffered = "We're also pleased to offer you $25,0000 grant"
+    aidOffered = "We're also pleased to offer you $25,000 grant"
 
     #if the applicant is approved update the userTable
     if request.form["CACandChairDecision"] == "Admit Applicant":

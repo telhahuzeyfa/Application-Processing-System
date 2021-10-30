@@ -3,7 +3,7 @@
   <title>Application Processing System Phase 2</title>
   <head>
     <!-- <! Main CSS --> -->
-    <link rel="stylesheet" type="text/css" href="static/css/testCSS.css?v=2.0">
+    <link rel="stylesheet" type="text/css" href="static/css/testCSS.css?v=2.1">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
@@ -43,15 +43,15 @@
         </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item active" href="dashboard.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+        <li><a class="app-menu__item active" href="/home"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Apply</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <!-- applicant's roles  -->  
           {% if session['roleNum'] == 1%}
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="/MsApplication"><i class="icon fa fa-circle-o"></i> Apply for MS program</a></li>
-            <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i> Custom Components</a></li>
+            <!-- <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i> Custom Components</a></li>
             <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>
-            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
+            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li> -->
           </ul>
           {% endif %}
           <!-- Graduate Secretary roles -->
@@ -123,7 +123,6 @@
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="/MsApplication"><i class="icon fa fa-circle-o"></i> Apply for MS program</a></li>
             <li><a class="app-menu__item" href="/checkStatus"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Check Status</span></a></li>
-      </ul>
           </ul>
           {% endif %}
           <!-- Graduate Secretary roles -->
@@ -179,13 +178,13 @@
             {% endif %}
 
         </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <!-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="/viewUsersInfo"><i class="icon fa fa-circle-o"></i> User Information Table</a></li>
             <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
           </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        </li> -->
+        <!-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
             <li><a class="treeview-item" href="page-login.html"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
@@ -198,72 +197,91 @@
           </ul>
         </li>
         <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>
-        
+         -->
         <!-- Applicant's role for checking their status -->
-        <li><a class="app-menu__item" href="/checkStatus"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Check your staus</span></a></li>
-      </ul>
+        <!-- <li><a class="app-menu__item" href="/checkStatus"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Status</span></a></li>
+      </ul> -->
     </aside>
     <main class="app-content">
       <div class="app-title">
         <div>
           <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
           <p>A free and open source Bootstrap 4 admin template</p>
+          <div>
+            <p class="app-sidebar__user-name">Welcome {{user}}</p>
+          </div>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><a href="/home" class="fa fa-home fa-lg"></a></li>
           <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
         </ul>
       </div>
+
       <div class="row">
-        <div class="col-md-6 col-lg-3">
-          <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
-            <div class="info">
-              <h4>Users</h4>
-              <p><b>5</b></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
-            <div class="info">
-              <h4>Likes</h4>
-              <p><b>25</b></p>
-            </div>
-          </div>
-        </div>
         <div class="col-md-6 col-lg-3">
           <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
             <div class="info">
-              <h4>Uploades</h4>
-              <p><b>10</b></p>
+              <!-- only for masters students  -->
+              <!-- <li><a class="treeview-item" href="/MsApplication"><i class="icon fa fa-circle-o"></i> Apply for MS program</a></li> -->
+              <a class="app-menu__item" href="/MsApplication"><strong>Apply for MS program</a>
             </div>
           </div>
         </div>
+
         <div class="col-md-6 col-lg-3">
+          <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+            <div class="info">
+              <!-- <h4>Status</h4> -->
+                <a class="app-menu__item" href="/checkStatus"><strong>Check Status</a>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-6 col-lg-3">
+          <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
+            <div class="info">
+              <h4>LIKES</h4>
+              <p><b>25</b></p>
+            </div>
+          </div>
+        </div> -->
+        <!-- <div class="col-md-6 col-lg-3">
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+            <div class="info">
+              <h4>Files</h4>
+              <p><b>10</b></p>
+            </div>
+          </div>
+        </div> -->
+        <!-- <div class="col-md-6 col-lg-3">
           <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
             <div class="info">
-              <h4>Stars</h4>
+              <h4>Maybe top  10 applications</h4>
               <p><b>500</b></p>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="row">
-        <div class="col-md-6">
+        <div>
           <div class="tile">
-            <h3 class="tile-title">Monthly Sales</h3>
+            <!-- <h3 class="tile-title">HT COLLEGE</h3> -->
+            <!-- <div>
+              <p class="app-sidebar__user-name">Welcome to HT College {{user}}</p>
+            </div> -->
+              <div class="image"><img src= {{ url_for('static', filename='Images/campusPicture.jpeg') }} height="600" width="1150" alt="User Image">
+              </div>
             <div class="embed-responsive embed-responsive-16by9">
               <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
             </div>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="tile">
+          <!-- <div class="tile">
             <h3 class="tile-title">Support Requests</h3>
             <div class="embed-responsive embed-responsive-16by9">
               <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </main>
