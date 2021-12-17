@@ -15,10 +15,10 @@ margin: 10px 0;
 border: none;
 cursor: grabbing;
 width: 100%;
-}
+}   
 .formcontainer {
     text-align: left;
-    margin: 40px 40px 40px;
+
 }
 .container {
     padding: 40px 0;
@@ -26,6 +26,8 @@ width: 100%;
 }
 #backgroundImageIdx{
     background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
+    background-size: cover;
+
 }
 #startAppBtn { 
     height: 50px; 
